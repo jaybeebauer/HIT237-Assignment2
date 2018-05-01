@@ -35,12 +35,23 @@
     <Compile Include="HIT237_Assignment2\settings.py" />
     <Compile Include="HIT237_Assignment2\urls.py" />
     <Compile Include="HIT237_Assignment2\wsgi.py" />
+    <Compile Include="TodoList\admin.py" />
+    <Compile Include="TodoList\apps.py" />
+    <Compile Include="TodoList\migrations\__init__.py" />
+    <Compile Include="TodoList\models.py" />
+    <Compile Include="TodoList\tests.py" />
+    <Compile Include="TodoList\views.py" />
+    <Compile Include="TodoList\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="TodoList\templates\index.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HIT237_Assignment2\" />
+    <Folder Include="TodoList\" />
+    <Folder Include="TodoList\migrations\" />
+    <Folder Include="TodoList\templates\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
