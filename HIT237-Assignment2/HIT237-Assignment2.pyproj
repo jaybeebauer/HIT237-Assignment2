@@ -46,6 +46,7 @@
   <ItemGroup>
     <Content Include="requirements.txt" />
     <Content Include="TodoList\templates\index.html" />
+    <Content Include="TodoList\templates\site_base.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HIT237_Assignment2\" />

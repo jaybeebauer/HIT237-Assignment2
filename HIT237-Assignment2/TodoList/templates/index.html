@@ -1,9 +1,14 @@
-<html>
-<head><title></title></head>
+{% extends "site_base.html" %}
+{% load static %}
 
-<body>
+{% block page_title %}Todo List{% endblock %}
 
-{{ content }}
+{% block page_heading_title %}<h1>Todo List</h1>{% endblock %}
 
-</body>
-</html>
+{% block main_body %}
+<h2 >Website Purpose</h2>
+<p>Welcome to my Book Catalogue website.</p>
+<p>My name is Joshua Bauer (S263364).</p>
+<!--TODO Adjust description -->
+<p>Description about site here.</p>
+{% endblock %}
