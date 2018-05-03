@@ -55,6 +55,7 @@
     <Folder Include="TodoList\" />
     <Folder Include="TodoList\migrations\" />
     <Folder Include="C:\Users\Joshua.Bauer\source\repos\HIT237-Assignment2\HIT237-Assignment2\TodoList\static\" />
+    <Folder Include="TodoList\static\" />
     <Folder Include="TodoList\static\css\" />
     <Folder Include="TodoList\static\img\" />
     <Folder Include="TodoList\static\js\" />
