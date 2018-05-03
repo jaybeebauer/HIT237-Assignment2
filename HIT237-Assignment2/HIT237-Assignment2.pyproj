@@ -45,12 +45,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="TodoList\templates\todolist.html" />
+    <Content Include="TodoList\templates\adjustrecord.html" />
     <Content Include="TodoList\templates\index.html" />
+    <Content Include="TodoList\templates\site_base.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HIT237_Assignment2\" />
     <Folder Include="TodoList\" />
     <Folder Include="TodoList\migrations\" />
+    <Folder Include="C:\Users\Joshua.Bauer\source\repos\HIT237-Assignment2\HIT237-Assignment2\TodoList\static\" />
+    <Folder Include="TodoList\static\" />
+    <Folder Include="TodoList\static\css\" />
+    <Folder Include="TodoList\static\img\" />
+    <Folder Include="TodoList\static\js\" />
     <Folder Include="TodoList\templates\" />
   </ItemGroup>
   <ItemGroup>
