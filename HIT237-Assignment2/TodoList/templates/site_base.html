@@ -24,12 +24,11 @@
       {% block page_heading_title %}<h1>ERROR: No Heading Supplied</h1>{% endblock %}
       <nav>
         <ul>
-          <li><a href="{% url 'home' %}">Home</a>  
-            <li><a href="{% url 'todolist' %}">Todo List</a>
-            <li><a href="{% url 'create' %}">Create Item</a> 
-            <li><a href="{% url 'update' %}">Update Item</a> 
-            <li><a href="{% url 'delete' %}">Delete Item</a>
-            <!--<li><a href="">Detail</a> -->
+          <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'todolist' %}">Todo List</a></li>
+            <li><a href="{% url 'assignees' %}">Assignees</a></li>
+            <li><a href="{% url 'priorities' %}">Priorities</a></li>
+            <li><a href="{% url 'tags' %}">Tags</a></li>
        </ul>
       </nav>
       </header>

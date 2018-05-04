@@ -37,6 +37,9 @@
     <Compile Include="HIT237_Assignment2\wsgi.py" />
     <Compile Include="TodoList\admin.py" />
     <Compile Include="TodoList\apps.py" />
+    <Compile Include="TodoList\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TodoList\migrations\__init__.py" />
     <Compile Include="TodoList\models.py" />
     <Compile Include="TodoList\tests.py" />
@@ -45,8 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
-    <Content Include="TodoList\templates\todolist.html" />
-    <Content Include="TodoList\templates\adjustrecord.html" />
+    <Content Include="TodoList\templates\list.html" />
+    <Content Include="TodoList\templates\record.html" />
     <Content Include="TodoList\templates\index.html" />
     <Content Include="TodoList\templates\site_base.html" />
   </ItemGroup>

@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+{% load static %}
+
+{% block page_title %}{{ operation | title }} {{ type | title }}{% endblock %}
+
+{% block page_heading_title %}<h1>{{ operation | title }} {{ type | title }}</h1>{% endblock %}
+
+{% block main_body %}
+<h2>{{ operation | title }} {{ type | title }}</h2>
+
+<form action="{% url 'home' %}" method="post" novalidate>
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="{{ operation | title }}" />
+</form>
+
+{% endblock %}

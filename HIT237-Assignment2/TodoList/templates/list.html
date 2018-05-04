@@ -8,11 +8,10 @@
 {% block main_body %}
 
 <ul>
-   <li>
-       <a href="#">Assignee</a>
-        <a href="#">Todo Title</a>
-
-   </li>
+    {% for item in list %}
+      <li>
+        {{ item.id }}
+      </li>
+      {% endfor %}
 </ul>
-
 {% endblock %}

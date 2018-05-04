@@ -37,4 +37,4 @@ class Item(models.Model):
     assignees = models.ManyToManyField(Assignee)
 
     def __str__(self):
-        return str('%s Due:%s' % (self.title, dueDate))
+        return str('%s Due:%s' % (self.title, self.duedate))
