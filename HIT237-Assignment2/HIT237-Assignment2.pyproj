@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="TodoList\templates\detail.html" />
     <Content Include="TodoList\templates\list.html" />
     <Content Include="TodoList\templates\record.html" />
     <Content Include="TodoList\templates\index.html" />

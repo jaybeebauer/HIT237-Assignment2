@@ -25,10 +25,10 @@
       <nav>
         <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'todolist' %}">Todo List</a></li>
-            <li><a href="{% url 'assignees' %}">Assignees</a></li>
-            <li><a href="{% url 'priorities' %}">Priorities</a></li>
-            <li><a href="{% url 'tags' %}">Tags</a></li>
+            <li><a href="{% url 'list' 'item' %}">List</a></li>
+            <li><a href="{% url 'list' 'assignee' %}">Assignees</a></li>
+            <li><a href="{% url 'list' 'priority' %}">Priorities</a></li>
+            <li><a href="{% url 'list' 'tag' %}">Tags</a></li>
        </ul>
       </nav>
       </header>
