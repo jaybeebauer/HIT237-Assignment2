@@ -7,11 +7,17 @@
 
 {% block main_body %}
 
-<ul>
-    {% for item in list %}
+{% if type == 'item' and list %}
+    <ul>
+
+      {% for item in list %}
       <li>
-        {{ item.id }}
+        <a href="{% url 'record' 'detail' 'item' item.id %}">{{ item.title }}, {{ item.duedate }}</a><a href="{% url 'record' 'update' 'item' item.id %}">Edit</a>
       </li>
       {% endfor %}
-</ul>
+
+    </ul>
+    {% else %}
+      <p>Sorry, there appears to be no {{ type }} in the database.</p>
+    {% endif %}
 {% endblock %}
