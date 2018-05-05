@@ -7,25 +7,15 @@ import re
 def home(request):
     return render(request, 'index.html')
 
-def todolist(request):
-    results = Item.objects.order_by('duedate')
-    page_data = {'list': results}
+def list(request, type):
+    results = GetAllModelObjects(type.title())
+    page_data = {'list' : results, 'type' : type}
     return render(request, 'list.html', page_data)
 
-def assignees(request):
-    results = Assignee.objects.all()
-    page_data = {'list': results}
-    return render(request, 'list.html', page_data)
-
-def priorities(request):
-    results = Priority.objects.all()
-    page_data = {'list': results}
-    return render(request, 'list.html', page_data)
-
-def tags(request):
-    results = Tag.objects.all()
-    page_data = {'list': results}
-    return render(request, 'list.html', page_data)
+def detail(request, type, guid):
+    result = GetModelDetail(type.title(), guid)
+    page_data = {'item' : result, 'type' : type}
+    return render(request, 'detail.html', page_data)
 
 def record(request, operation, type, guid=''):
     page_data = ''
@@ -58,8 +48,8 @@ def record(request, operation, type, guid=''):
     elif operation == 'detail':
         if type == 'item':
             record = Item.objects.get(id=guid)
-            form = ItemForm(instance=record)
-            page_data = {'form' : form, 'operation' : operation, 'type' : type}
+            #form = ItemForm(instance=record)
+            page_data = {'record' : record, 'operation' : operation, 'type' : type}
     elif operation == 'delete':
         if type == 'item':
             record = Item.objects.get(id=guid)
@@ -79,3 +69,11 @@ def record(request, operation, type, guid=''):
             page_data = {'operation' : operation, 'type' : type}
 
     return render(request, 'record.html', page_data)
+
+def GetAllModelObjects(operation):
+    result = eval("%s.objects.all()" % (operation))
+    return result
+
+def GetModelDetail(operation, guid):
+    result = eval("%s.objects.get(id=%s)" % (operation, guid))
+    return result
