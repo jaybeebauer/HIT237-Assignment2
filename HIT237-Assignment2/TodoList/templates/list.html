@@ -6,18 +6,23 @@
 {% block page_heading_title %}<h1>Todo List</h1>{% endblock %}
 
 {% block main_body %}
-
-{% if type == 'item' and list %}
-    <ul>
-
-      {% for item in list %}
-      <li>
-        <a href="{% url 'record' 'detail' 'item' item.id %}">{{ item.title }}, {{ item.duedate }}</a><a href="{% url 'record' 'update' 'item' item.id %}">Edit</a>
-      </li>
-      {% endfor %}
-
-    </ul>
+    {% if list %}
+        <ul>
+          {% for item in list %}
+              <li>
+                <a href="{% url 'record' 'detail' 'item' item.id %}">
+                  {% if type == 'item' %}
+                    {{ item.title }}, {{ item.duedate }}
+                  {% elif type == 'assignee' %}
+                    {{ item.firstname }} {{ item.lastname }}
+                  {% else %}
+                    {{ item.name }}
+                  {% endif %}
+              </a><a href="{% url 'record' 'update' type item.id %}">Edit</a>
+              </li>
+          {% endfor %}
+        </ul>
     {% else %}
-      <p>Sorry, there appears to be no {{ type }} in the database.</p>
+        <p>Sorry, there appears to be no {{ type }} in the database.</p>
     {% endif %}
 {% endblock %}
