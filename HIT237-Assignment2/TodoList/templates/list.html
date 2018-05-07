@@ -10,7 +10,7 @@
         <ul>
           {% for item in list %}
               <li>
-                <a href="{% url 'record' 'detail' 'item' item.id %}">
+                <a href="{% url 'record' 'detail' type item.id %}">
                   {% if type == 'item' %}
                     {{ item.title }}, {{ item.duedate }}
                   {% elif type == 'assignee' %}

@@ -6,53 +6,57 @@
 {% block page_heading_title %}<h1>{{ operation | title }} {{ type | title }}</h1>{% endblock %}
 
 {% block main_body %}
-<h2>{{ operation | title }} {{ type | title }}</h2>
-
-
-
-{% if operation != 'detail' %}
-    <form action="{% url 'home' %}" method="post" novalidate>
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="{{ operation | title }}" />
-    </form>
+    <h2>{{ operation | title }} {{ type | title }}</h2>
+    {% if operation != 'detail' %}
+        {% if operation == 'create' %}
+            <form action="{% url 'create' operation type %}" method="post" novalidate>
+        {% else %}
+            <form action="{% url 'record' operation type guid %}" method="post" novalidate>
+        {% endif %}
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="{{ operation | title }}" />
+        </form>
     {% else %}
-      <table>
-      <tr>
-        <th>Title</th>
-        <td>{{ record.title }}</td>
-      </tr>
-          <tr>
-        <th>Notes</th>
-        <td>{{ record.notes }}</td>
-      </tr>
-          <tr>
-        <th>Assignees</th>
-        <td>{% for assignee in record.assignees.all %}
-      {{ assignee }}
-      {% endfor %}</td>
-      </tr>
-      <tr>
-        <th>Priority</th>
-        <td>{{ record.priority }}</td>
-      </tr>
-        <tr>
-        <th>Tags</th>
-        <td>{% for tag in record.tags.all %}
-      {{ tag }}
-      {% endfor %}</td>
-      </tr>
-        <tr>
-        <th>Complete?</th>
-        <td>{{ record.complete }}</td>
-      </tr>
-        <tr>
-        <th>Due Date</th>
-        <td>{{ record.duedate }}</td>
-      </tr>
-    </table>
+        <table>
+            <tr>
+                <th>Title</th>
+                <td>{{ record.title }}</td>
+            </tr>
+            <tr>
+                <th>Notes</th>
+                <td>{{ record.notes }}</td>
+            </tr>
+            <tr>
+                <th>Assignees</th>
+                <td>
+                    {% for assignee in record.assignees.all %}
+                    {{ assignee }}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>{{ record.priority }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>
+                    {% for tag in record.tags.all %}
+                    {{ tag }}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Complete?</th>
+                <td>{{ record.complete }}</td>
+            </tr>
+            <tr>
+                <th>Due Date</th>
+                <td>{{ record.duedate }}</td>
+            </tr>
+        </table>
     {% endif %}
-
 {% endblock %}
