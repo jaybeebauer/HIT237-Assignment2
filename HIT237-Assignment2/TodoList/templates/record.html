@@ -3,60 +3,97 @@
 
 {% block page_title %}{{ operation | title }} {{ type | title }}{% endblock %}
 
-{% block page_heading_title %}<h1>{{ operation | title }} {{ type | title }}</h1>{% endblock %}
-
 {% block main_body %}
     <h2>{{ operation | title }} {{ type | title }}</h2>
-    {% if operation != 'detail' %}
-        {% if operation == 'create' %}
+    {% if operation == 'create'%}
             <form action="{% url 'create' operation type %}" method="post" novalidate>
-        {% else %}
-            <form action="{% url 'record' operation type guid %}" method="post" novalidate>
-        {% endif %}
             {% csrf_token %}
             <table>
                 {{ form.as_table }}
             </table>
             <input type="submit" value="{{ operation | title }}" />
         </form>
-    {% else %}
-        <table>
-            <tr>
-                <th>Title</th>
-                <td>{{ record.title }}</td>
-            </tr>
-            <tr>
-                <th>Notes</th>
-                <td>{{ record.notes }}</td>
-            </tr>
-            <tr>
-                <th>Assignees</th>
-                <td>
-                    {% for assignee in record.assignees.all %}
-                    {{ assignee }}
-                    {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <th>Priority</th>
-                <td>{{ record.priority }}</td>
-            </tr>
-            <tr>
-                <th>Tags</th>
-                <td>
-                    {% for tag in record.tags.all %}
-                    {{ tag }}
-                    {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <th>Complete?</th>
-                <td>{{ record.complete }}</td>
-            </tr>
-            <tr>
-                <th>Due Date</th>
-                <td>{{ record.duedate }}</td>
-            </tr>
-        </table>
+    {% endif %}
+    {% if operation == 'update'%}
+    <form action="{% url 'record' operation type guid %}" method="post" novalidate>
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="{{ operation | title }}" />
+        </form>
+    {% endif %}
+    {% if operation == 'detail'%}
+        {% if type == 'item'%}
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ record.title }}</td>
+                </tr>
+                <tr>
+                    <th>Notes</th>
+                    <td>{{ record.notes }}</td>
+                </tr>
+                <tr>
+                    <th>Due Date</th>
+                    <td>{{ record.duedate }}</td>
+                </tr>
+                <tr>
+                    <th>Assignees</th>
+                    <td>
+                        {% for assignee in record.assignees.all %}
+                        {{ assignee }}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Priority</th>
+                    <td>{{ record.priority }}</td>
+                </tr>
+                <tr>
+                    <th>Tags</th>
+                    <td>
+                        {% for tag in record.tags.all %}
+                        {{ tag }}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Complete?</th>
+                    <td>{{ record.complete }}</td>
+                </tr>
+                <tr>
+                    <th>Created Date/Time</th>
+                    <td>{{ record.created }}</td>
+                </tr>
+            </table>
+        {% endif %}
+        {% if type == 'assignee'%}
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <td>{{ record.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Surname</th>
+                    <td>{{ record.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ record.email }}</td>
+                </tr>
+            </table>
+        {% endif %}
+        {% if type == 'priority' or type == 'tag' %}
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ record.name }}</td>
+                </tr>
+            </table>
+        {% endif %}
+    {% endif %}
+    {% if operation == 'delete'%}
+        <p>Record {% firstof record.title record.name record.firstname %} deleted.</p>
     {% endif %}
 {% endblock %}

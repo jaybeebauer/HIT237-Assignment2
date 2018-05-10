@@ -14,11 +14,6 @@ def list(request, type):
     page_data = {'list' : results, 'type' : type}
     return render(request, 'list.html', page_data)
 
-def detail(request, type, guid):
-    result = GetModelDetail(type.title(), guid)
-    page_data = {'item' : result, 'type' : type}
-    return render(request, 'detail.html', page_data)
-
 def record(request, operation, type, guid=''):
     if operation == 'create':
         if request.method != 'POST':
@@ -29,13 +24,12 @@ def record(request, operation, type, guid=''):
                 page_data = {'form' : form, 'operation' : operation, 'type' : type}
             else:
                 cleanform = form.cleaned_data
-                new_item = form.save()
+                form.save()
                 return HttpResponseRedirect(reverse('list', args=(type,)))
     elif operation == 'update':
-        record = eval("%s.objects.get(id='%s')" % (type.title(), guid))
+        record = GetModelDetail(type, guid)
         if request.method != 'POST':
-            form = eval("%sForm(instance=record)" % (type.title(),))
-            page_data = {'form' : form, 'operation' : operation, 'type' : type, 'guid' : guid}
+            page_data = {'form' : eval("%sForm(instance=record)" % (type.title(),)), 'operation' : operation, 'type' : type, 'guid' : guid}
         else:
             form = eval("%sForm(request.POST, instance=record)" % (type.title(),))
             if form.is_valid() != True:
@@ -44,26 +38,12 @@ def record(request, operation, type, guid=''):
                 form.save()
                 return HttpResponseRedirect(reverse('list', args=(type,)))
     elif operation == 'detail':
-        record = GetModelDetail(type.title(), guid)
+        record = GetModelDetail(type, guid)
         page_data = {'record' : record, 'operation' : operation, 'type' : type, 'guid' : guid}
     elif operation == 'delete':
-        if type == 'item':
-            record = Item.objects.get(id=guid)
-            record.delete()
-            page_data = {'operation' : operation, 'type' : type, 'guid' : guid}
-        if type == 'priority':
-            record = Priority.objects.get(id=guid)
-            record.delete()
-            page_data = {'operation' : operation, 'type' : type, 'guid' : guid}
-        if type == 'tag':
-            record = Tag.objects.get(id=guid)
-            record.delete()
-            page_data = {'operation' : operation, 'type' : type, 'guid' : guid}
-        if type == 'assignee':
-            record = Assignee.objects.get(id=guid)
-            record.delete()
-            page_data = {'operation' : operation, 'type' : type, 'guid' : guid}
-
+        record = GetModelDetail(type,guid)
+        page_data = {'record' : record, 'operation' : operation, 'type' : type, 'guid' : guid}
+        record.delete()       
     return render(request, 'record.html', page_data)
 
 def GetAllModelObjects(type):
@@ -71,5 +51,5 @@ def GetAllModelObjects(type):
     return result
 
 def GetModelDetail(type, guid):
-    result = eval("%s.objects.get(id='%s')" % (type, guid))
+    result = eval("%s.objects.get(id='%s')" % (type.title(), guid))
     return result
