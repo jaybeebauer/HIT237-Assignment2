@@ -24,6 +24,10 @@
         </form>
     {% endif %}
     {% if operation == 'detail'%}
+        <span style="display: inherit;">
+            <a href="{% url 'record' 'update' type record.id %}" style=""><i class="fa fa-edit"></i>Edit</a> 
+            <a href="{% url 'record' 'delete' type record.id %}"><i class="fa fa-trash-o"></i>Delete</a>
+        </span>
         {% if type == 'item'%}
             <table>
                 <tr>

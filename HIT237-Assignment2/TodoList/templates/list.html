@@ -30,8 +30,8 @@
                   <span style="display: inherit;">Due: {{ item.duedate }}</span>
                   {% endif %}
                   <span style="display: inherit;">
-                      <a href="/update/item/464a3a05-57ec-4cae-aacc-0b45f64c5589" style=""><i class="fa fa-edit"></i>Edit</a> 
-                      <a href="/delete/item/464a3a05-57ec-4cae-aacc-0b45f64c5589"><i class="fa fa-trash-o"></i>Delete</a>
+                      <a href="{% url 'record' 'update' type item.id %}" style=""><i class="fa fa-edit"></i>Edit</a> 
+                      <a href="{% url 'record' 'delete' type item.id %}"><i class="fa fa-trash-o"></i>Delete</a>
                   </span>
               </li>
           {% endfor %}
