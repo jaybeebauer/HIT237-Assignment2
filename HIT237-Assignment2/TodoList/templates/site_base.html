@@ -48,20 +48,29 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-                    <li>
+                    {% url 'home' as home_url %}
+                    {% url 'list' 'item' as items_url %}
+                    {% url 'create' 'create' 'item' as create_url %}
+                    {% url 'list' 'assignee' as assignee_url %}
+                    {% url 'list' 'priority' as priority_url %}
+                    {% url 'list' 'tag' as tag_url %}
+                    <li {% if request.get_full_path == home_url %}class="active-link"{% endif %} >
                         <a href="{% url 'home' %}"><i class="fa fa-desktop"></i>Home</a>
                     </li>
-                    <li>
-                        <a href="{% url 'list' 'item' %}"><i class="fa fa-table"></i>Items</a>
+                    <li {% if request.get_full_path == create_url %}class="active-link"{% endif %} >
+                        <a href="{% url 'create' 'create' 'item' %}"><i class="fa fa-plus-square"></i>Create Item</a>
                     </li>
-                    <li class="active-link">
-                        <a href="{% url 'list' 'assignee' %}"><i class="fa fa-edit"></i>Assignee</a>
+                    <li {% if request.get_full_path == items_url %}class="active-link"{% endif %} >
+                        <a href="{% url 'list' 'item' %}"><i class="fa fa-list"></i>Todo List</a>
                     </li>
-                    <li>
-                        <a href="{% url 'list' 'priority' %}"><i class="fa fa-table"></i>Priorities</a>
+                    <li {% if request.get_full_path == assignee_url %}class="active-link"{% endif %} >
+                        <a href="{% url 'list' 'assignee' %}"><i class="fa fa-user"></i>List Assignees</a>
                     </li>
-                    <li>
-                        <a href="{% url 'list' 'tag' %}"><i class="fa fa-table"></i>Tags</a>
+                    <li {% if request.get_full_path == priority_url %}class="active-link"{% endif %} >
+                        <a href="{% url 'list' 'priority' %}"><i class="fa fa-exclamation-circle"></i>List Priorities</a>
+                    </li>
+                    <li {% if request.get_full_path == tag_url %}class="active-link"{% endif %} >
+                        <a href="{% url 'list' 'tag' %}"><i class="fa fa-tags"></i>List Tags</a>
                     </li>
                 </ul>
             </div>

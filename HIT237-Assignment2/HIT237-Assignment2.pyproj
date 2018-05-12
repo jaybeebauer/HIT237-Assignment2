@@ -69,7 +69,6 @@
     <Content Include="TodoList\templates\record.html" />
     <Content Include="TodoList\templates\index.html" />
     <Content Include="TodoList\templates\site_base.html" />
-    <Content Include="TodoList\templates\site_base_old.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HIT237_Assignment2\" />
