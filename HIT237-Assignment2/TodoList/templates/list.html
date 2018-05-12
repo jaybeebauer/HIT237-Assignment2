@@ -5,9 +5,13 @@
 
 {% block page_heading_title %}<h1>Todo List</h1>{% endblock %}
 
+<!-- FORMATTING
+    Looks like there are a mix of space numbers here as well
+-->
+
 {% block main_body %}
     <h2>List {{ type | title }}</h2>
-<a href="{% url 'create' 'create' type %}">Create</a>
+    <a href="{% url 'create' 'create' type %}">Create</a>
     {% if list %}
         <ul>
           {% for item in list %}
@@ -20,8 +24,9 @@
                   {% else %}
                     {{ item.name }}
                   {% endif %}
-              </a><a href="{% url 'record' 'update' type item.id %}">Edit</a>
-                  <a href="{% url 'record' 'delete' type item.id %}">Delete</a>
+                </a>
+                <a href="{% url 'record' 'update' type item.id %}">Edit</a>
+                <a href="{% url 'record' 'delete' type item.id %}">Delete</a>
               </li>
           {% endfor %}
         </ul>
