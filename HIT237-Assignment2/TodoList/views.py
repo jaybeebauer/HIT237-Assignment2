@@ -15,6 +15,9 @@ def list(request, type):
     return render(request, 'list.html', page_data)
 
 def record(request, operation, type, guid=''):
+
+    # Use a switch here. Big else if blocks like this become hard to read. A switch is usually your best option here
+
     if operation == 'create':
         if request.method != 'POST':
             page_data = {'form' : eval("%sForm()" % (type.title(),)), 'operation' : operation, 'type' : type}
@@ -43,7 +46,7 @@ def record(request, operation, type, guid=''):
     elif operation == 'delete':
         record = GetModelDetail(type,guid)
         page_data = {'record' : record, 'operation' : operation, 'type' : type, 'guid' : guid}
-        record.delete()       
+        record.delete()
     return render(request, 'record.html', page_data)
 
 def GetAllModelObjects(type):

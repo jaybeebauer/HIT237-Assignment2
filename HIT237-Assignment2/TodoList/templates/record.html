@@ -4,16 +4,24 @@
 {% block page_title %}{{ operation | title }} {{ type | title }}{% endblock %}
 
 {% block main_body %}
+    <!--
+        The Formatting of you html is a little out. Its a little thing really but makes a big difference when you are trying to debug
+        or when another person is trying to understand what you are trying to do.
+
+        Also white space is CHEAP!. More spacing is better. Helps for readablilty
+    -->
     <h2>{{ operation | title }} {{ type | title }}</h2>
+
     {% if operation == 'create'%}
-            <form action="{% url 'create' operation type %}" method="post" novalidate>
+        <form action="{% url 'create' operation type %}" method="post" novalidate>
             {% csrf_token %}
-            <table>
-                {{ form.as_table }}
-            </table>
-            <input type="submit" value="{{ operation | title }}" />
-        </form>
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="{{ operation | title }}" />
+    </form>
     {% endif %}
+
     {% if operation == 'update'%}
     <form action="{% url 'record' operation type guid %}" method="post" novalidate>
             {% csrf_token %}
@@ -21,9 +29,14 @@
                 {{ form.as_table }}
             </table>
             <input type="submit" value="{{ operation | title }}" />
-        </form>
+    </form>
     {% endif %}
+
     {% if operation == 'detail'%}
+        <!--
+            Im not super familiar with Django so im not sure the syntax but I would potentially break the 'item' and 'assignee' sections into different fields and pass in the data
+            that you wish to render. Again just a readability thing.
+        -->
         {% if type == 'item'%}
             <table>
                 <tr>

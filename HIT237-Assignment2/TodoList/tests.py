@@ -10,6 +10,8 @@ from django.test import TestCase
 
 # TODO: Configure your database in settings.py and sync before running tests.
 
+# Testing the code that you have written is usually a good idea. There isnt a great deal of "business logic" in your app so you can probably get away with no tests
+
 class SimpleTest(TestCase):
     """Tests for the application views."""
 
