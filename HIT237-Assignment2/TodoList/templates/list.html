@@ -12,23 +12,39 @@
         <ul class="list-group">
           {% for item in list %}
               <li class="list-group-item">
+                  <div style="display: flex;">
+                  {% if type == 'item' %}
+                    <div class="container" style="flex: 1;">
+                      <div class="round">
+                        <input disabled {% if item.complete == True %}checked{% endif %} type="checkbox" id="checkbox" />
+                        <label for="checkbox"></label>
+                      </div>
+                    </div>
+                  {% endif %}
+                  <div style="flex: 5;">
                 <a href="{% url 'record' 'detail' type item.id %}">
                   {% if type == 'item' %}
                     {{ item.title }}
+                    <div class="text-muted small">
+                      Due: {{ item.duedate }}
+                    </div>
                   {% elif type == 'assignee' %}
                     {{ item.firstname }} {{ item.lastname }}
                   {% else %}
                     {{ item.name }}
                   {% endif %}
                  </a>
+                      </div>
                   {% if type == 'item' %}
+                      <div style="flex: 3;">
                   {% for tag in item.tags.all %}
                   <span class="badge badge-default badge-pill">
                     <i class="fa fa-tags"></i>{{ tag }}
                   </span>
                     {% endfor %}
-                  <span style="display: inherit;">Due: {{ item.duedate }}</span>
+                  </div>
                   {% endif %}
+                  </div>
                   <span style="display: inherit;">
                       <a href="{% url 'record' 'update' type item.id %}" style=""><i class="fa fa-edit"></i>Edit</a> 
                       <a href="{% url 'record' 'delete' type item.id %}" class="confirmation" ><i class="fa fa-trash-o"></i>Delete</a>

@@ -10,7 +10,10 @@ def home(request):
     return render(request, 'index.html')
 
 def list(request, type):
-    results = GetAllModelObjects(type.title())
+    if type == 'item':
+        results = eval("%s.objects.all().order_by('complete', 'duedate')" % (type.title()))
+    else:
+        results = eval("%s.objects.all()" % (type.title()))
     page_data = {'list' : results, 'type' : type}
     return render(request, 'list.html', page_data)
 
@@ -45,10 +48,6 @@ def record(request, operation, type, guid=''):
         page_data = {'record' : record, 'operation' : operation, 'type' : type, 'guid' : guid}
         record.delete()       
     return render(request, 'record.html', page_data)
-
-def GetAllModelObjects(type):
-    result = eval("%s.objects.all()" % (type))
-    return result
 
 def GetModelDetail(type, guid):
     result = eval("%s.objects.get(id='%s')" % (type.title(), guid))
