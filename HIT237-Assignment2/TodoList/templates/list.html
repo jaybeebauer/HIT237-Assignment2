@@ -7,21 +7,32 @@
 
 {% block main_body %}
     <h2>List {{ type | title }}</h2>
-<a href="{% url 'create' 'create' type %}">Create</a>
+<i class="fa fa-plus-square"></i> <a href="{% url 'create' 'create' type %}">Create</a>
     {% if list %}
-        <ul>
+        <ul class="list-group">
           {% for item in list %}
-              <li>
+              <li class="list-group-item">
                 <a href="{% url 'record' 'detail' type item.id %}">
                   {% if type == 'item' %}
-                    {{ item.title }}, {{ item.duedate }}
+                    {{ item.title }}
                   {% elif type == 'assignee' %}
                     {{ item.firstname }} {{ item.lastname }}
                   {% else %}
                     {{ item.name }}
                   {% endif %}
-              </a><a href="{% url 'record' 'update' type item.id %}">Edit</a>
-                  <a href="{% url 'record' 'delete' type item.id %}">Delete</a>
+                 </a>
+                  {% if type == 'item' %}
+                  {% for tag in item.tags.all %}
+                  <span class="badge badge-default badge-pill">
+                    <i class="fa fa-tags"></i>{{ tag }}
+                  </span>
+                    {% endfor %}
+                  <span style="display: inherit;">Due: {{ item.duedate }}</span>
+                  {% endif %}
+                  <span style="display: inherit;">
+                      <a href="{% url 'record' 'update' type item.id %}" style=""><i class="fa fa-edit"></i>Edit</a> 
+                      <a href="{% url 'record' 'delete' type item.id %}" class="confirmation" ><i class="fa fa-trash-o"></i>Delete</a>
+                  </span>
               </li>
           {% endfor %}
         </ul>
