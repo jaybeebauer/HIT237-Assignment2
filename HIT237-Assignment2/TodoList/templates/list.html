@@ -31,7 +31,7 @@
                   {% endif %}
                   <span style="display: inherit;">
                       <a href="{% url 'record' 'update' type item.id %}" style=""><i class="fa fa-edit"></i>Edit</a> 
-                      <a href="{% url 'record' 'delete' type item.id %}"><i class="fa fa-trash-o"></i>Delete</a>
+                      <a href="{% url 'record' 'delete' type item.id %}" class="confirmation" ><i class="fa fa-trash-o"></i>Delete</a>
                   </span>
               </li>
           {% endfor %}
