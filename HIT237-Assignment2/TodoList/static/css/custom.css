@@ -137,7 +137,7 @@ min-height: 80px;
     position: relative;
 }
 
-.round label {
+    .round label {
         background-color: #fff;
         border: 1px solid #ccc;
         border-radius: 50%;
@@ -147,7 +147,8 @@ min-height: 80px;
         position: absolute;
         top: 0;
         width: 28px;
-}
+        min-width: 28px;
+    }
 
 .round label:after {
             border: 2px solid #fff;
@@ -178,6 +179,13 @@ min-height: 80px;
 
 .container {
     margin: 0 auto;
+    max-width: 80px;
+    min-width: 70px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: center;
 }
 
 /*==============================================
