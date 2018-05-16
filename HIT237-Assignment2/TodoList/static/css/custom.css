@@ -130,7 +130,7 @@ min-height: 80px;
 
 
 /*==============================================
-    CUSTOM CHECKBOX   
+    List View Adjustments  
     =============================================*/
 
 .round {
@@ -188,18 +188,32 @@ min-height: 80px;
     justify-content: center;
 }
 
+.tags {
+    float: none;
+    overflow: auto;
+    margin-left: 0;
+}
+
+.item {
+    display: inline-block;
+}
+
 /*==============================================
     MEDIA QUERIES     
     =============================================*/
- 
- @media(min-width:768px) {
-     #page-wrapper{
+@media(min-width:768px) {
+    #page-wrapper{
                margin: 0 0 0 260px;
         padding: 15px 30px;
         min-height: 1050px;
 		
     }
-	
+
+    .tags {
+        float: right;
+        margin: 0 auto;
+        max-width: 170px;
+    }
 	
     .navbar-side {
         z-index: 1;

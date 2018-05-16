@@ -21,7 +21,7 @@
          </div>
          {% endif %}
        <div>
-         <div style="display: inline-block;">
+         <div class="item">
             <a href="{% url 'record' 'detail' type item.id %}">
                {% if type == 'item' %}
                {{ item.title }}
@@ -36,7 +36,7 @@
             </a>
          </div>
          {% if type == 'item' %}
-         <div style="float: right;margin: 0 auto; width: 100px;">
+         <div class="tags">
             {% for tag in item.tags.all %}
             <div class="badge badge-default badge-pill">
             <i class="fa fa-tags"></i>{{ tag }}
