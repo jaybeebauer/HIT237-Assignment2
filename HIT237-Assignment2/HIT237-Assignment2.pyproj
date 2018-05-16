@@ -61,10 +61,11 @@
     <Content Include="TodoList\static\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="TodoList\static\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="TodoList\static\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="TodoList\static\img\favicon.ico" />
+    <Content Include="TodoList\static\img\todo_logo.png" />
     <Content Include="TodoList\static\js\bootstrap.min.js" />
     <Content Include="TodoList\static\js\custom.js" />
     <Content Include="TodoList\static\js\jquery-1.10.2.js" />
-    <Content Include="TodoList\templates\detail.html" />
     <Content Include="TodoList\templates\list.html" />
     <Content Include="TodoList\templates\record.html" />
     <Content Include="TodoList\templates\index.html" />

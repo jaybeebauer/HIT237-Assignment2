@@ -9,50 +9,50 @@
     <h2>List {{ type | title }}</h2>
 <i class="fa fa-plus-square"></i> <a href="{% url 'create' 'create' type %}">Create</a>
 {% if list %}
-<ul class="list-group">
-   {% for item in list %}
-   <li class="list-group-item">
-         {% if type == 'item' %}
-         <div class="container">
-            <div class="round">
-               <input disabled {% if item.complete == True %}checked{% endif %} type="checkbox" id="checkbox" />
-               <label for="checkbox"></label>
-            </div>
-         </div>
-         {% endif %}
-       <div>
-         <div class="item">
-            <a href="{% url 'record' 'detail' type item.id %}">
-               {% if type == 'item' %}
-               {{ item.title }}
-               <div class="text-muted small">
-                  Due: {{ item.duedate }}
-               </div>
-               {% elif type == 'assignee' %}
-               {{ item.firstname }} {{ item.lastname }}
-               {% else %}
-               {{ item.name }}
-               {% endif %}
-            </a>
-         </div>
-         {% if type == 'item' %}
-         <div class="tags">
-            {% for tag in item.tags.all %}
-            <div class="badge badge-default badge-pill">
-            <i class="fa fa-tags"></i>{{ tag }}
-            </div>
-            {% endfor %}
-         </div>
-         {% endif %}
-      </div>
-      <div style="width: 100%;">
-      <a href="{% url 'record' 'update' type item.id %}" style=""><i class="fa fa-edit"></i>Edit</a> 
-      <a href="{% url 'record' 'delete' type item.id %}" class="confirmation" ><i class="fa fa-trash-o"></i>Delete</a>
-      </div>
-   </li>
-   {% endfor %}
-</ul>
+    <ul class="list-group">
+       {% for item in list %}
+           <li class="list-group-item">
+                {% if type == 'item' %}
+                     <div class="container">
+                        <div class="round">
+                           <input disabled {% if item.complete == True %}checked{% endif %} type="checkbox" id="checkbox" />
+                           <label for="checkbox"></label>
+                        </div>
+                     </div>
+                 {% endif %}
+               <div>
+                 <div class="item">
+                    <a href="{% url 'record' 'detail' type item.id %}">
+                       {% if type == 'item' %}
+                           {{ item.title }}
+                           <div class="text-muted small">
+                              Due: {{ item.duedate }}
+                           </div>
+                       {% elif type == 'assignee' %}
+                            {{ item.firstname }} {{ item.lastname }}
+                       {% else %}
+                            {{ item.name }}
+                       {% endif %}
+                    </a>
+                 </div>
+                 {% if type == 'item' %}
+                     <div class="tags">
+                        {% for tag in item.tags.all %}
+                            <div class="badge badge-default badge-pill">
+                                <i class="fa fa-tags"></i>{{ tag }}
+                            </div>
+                        {% endfor %}
+                     </div>
+                 {% endif %}
+              </div>
+              <div style="width: 100%;">
+                  <a href="{% url 'record' 'update' type item.id %}" style=""><i class="fa fa-edit"></i>Edit</a> 
+                  <a href="{% url 'record' 'delete' type item.id %}" class="confirmation" ><i class="fa fa-trash-o"></i>Delete</a>
+              </div>
+           </li>
+       {% endfor %}
+    </ul>
 {% else %}
-<p>Sorry, there appears to be no {{ type }} in the database.</p>
+    <p>Sorry, there appears to be no {{ type }} in the database.</p>
 {% endif %}
 {% endblock %}
