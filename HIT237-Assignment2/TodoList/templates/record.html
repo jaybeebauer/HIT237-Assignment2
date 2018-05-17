@@ -5,45 +5,34 @@
 
 {% block main_body %}
 <h2>{{ operation | title }} {{ type | title }}</h2>
-{% if operation == 'create'%}
-    <form action="{% url 'create' operation type %}" method="post" novalidate>
+{% if operation == 'create' or operation == 'update' %}
+    {% if operation == 'create'%}
+        <form action="{% url 'create' operation type %}" method="post" novalidate>
+    {% endif %}
+    {% if operation == 'update'%}
+        <form action="{% url 'record' operation type guid %}" method="post" novalidate>
+    {% endif %}
        {% csrf_token %}
        {% for field in form %}
            <div class="form-group {%if field.errors %}has-error{%endif%}">
-              {{ field.label_tag }} {{ field }}
-              {% if field.help_text %}
-                  <p class="help-block">{{ field.help_text|safe }}</p>
-                  <small class="text-danger">
+              {{ field.label_tag }}
+               <small class="text-danger">
                     {{ field.errors }}
-                  </small>
+               </small>
+              {{ field }}
+              {% if field.help_text %}
+                  <p class="help-block">{{ field.help_text|safe }}</p> 
               {% endif %}
            </div>
        {% endfor %}    
        <input class="btn btn-primary" type="submit" value="{{ operation | title }}" />
     </form>
 {% endif %}
-{% if operation == 'update'%}
-    <form action="{% url 'record' operation type guid %}" method="post" novalidate>
-       {% csrf_token %}
-       {% for field in form %}
-           <div class="form-group {%if field.errors %}has-error{%endif%}">
-              {{ field.label_tag }} {{ field }}
-              {% if field.help_text %}
-                  <p class="help-block">{{ field.help_text|safe }}</p>
-                  <small class="text-danger">
-                    {{ field.errors }}
-                  </small>
-              {% endif %}
-           </div>
-       {% endfor %}  
-       <input class="btn btn-primary" type="submit" value="{{ operation | title }}" />
-    </form>
-{% endif %}
 {% if operation == 'detail'%}
-    <span style="display: inherit;">
+    <div>
         <a href="{% url 'record' 'update' type record.id %}" ><i class="fa fa-edit"></i>Edit</a> 
         <a href="{% url 'record' 'delete' type record.id %}" class="confirmation" ><i class="fa fa-trash-o"></i>Delete</a>
-    </span>
+    </div>
     {% if type == 'item'%}
         <table>
            <tr>
@@ -62,7 +51,7 @@
               <th>Assignees</th>
               <td>
                  {% for assignee in record.assignees.all %}
-                 {{ assignee }}
+                    {{ assignee }}
                  {% endfor %}
               </td>
            </tr>
@@ -74,7 +63,7 @@
               <th>Tags</th>
               <td>
                  {% for tag in record.tags.all %}
-                 {{ tag }}
+                    {{ tag }}
                  {% endfor %}
               </td>
            </tr>
@@ -88,7 +77,7 @@
            </tr>
         </table>
     {% endif %}
-    {% if type == 'assignee'%}
+    {% if type == 'assignee' %}
         <table>
            <tr>
               <th>First Name</th>
@@ -115,5 +104,8 @@
 {% endif %}
 {% if operation == 'delete'%}
     <p>Record {% firstof record.title record.name record.firstname %} deleted.</p>
+    <div>
+        <a href="{% url 'list' type %}" ><i class="fa fa-edit"></i>Return to list.</a> 
+    </div>
 {% endif %}
 {% endblock %}

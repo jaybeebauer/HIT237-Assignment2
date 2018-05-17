@@ -2,13 +2,16 @@ from django.db import models
 import uuid
 
 # Create your models here.
+
+#Priority Model
 class Priority(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=20, help_text='Prioity type name, ie high or medium')
+    name = models.CharField(max_length=20, help_text='Priority type name, ie high or medium')
 
     def __str__(self):
         return self.name
 
+#Tag Model
 class Tag(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50, help_text='Name of the tag item, ie shopping or family')
@@ -16,6 +19,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+#Assignee Model
 class Assignee(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     firstname = models.CharField(max_length=100, help_text='The first name of the assignee')
@@ -25,6 +29,7 @@ class Assignee(models.Model):
     def __str__(self):
         return str('%s, %s - %s' % (self.lastname, self.firstname, self.email))
 
+#Item Model
 class Item(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100, help_text='The summary of a todo item')
